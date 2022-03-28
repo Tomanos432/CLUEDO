@@ -27,7 +27,7 @@ public class HelpPrompt : MonoBehaviour
         isOpen = false;
     }
 
-    void Open()
+    public void Open()
     {
         helpMenuUI.SetActive(true);
         isOpen = true;

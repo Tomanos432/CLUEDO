@@ -37,4 +37,16 @@ public class DetectiveNotes : MonoBehaviour
         Notepad.SetActive(true);
         IsOpen = true;
     }
+    
+    public void Button()
+    {
+        if (IsOpen)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
+    }
 }
