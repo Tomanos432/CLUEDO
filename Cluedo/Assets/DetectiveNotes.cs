@@ -6,7 +6,6 @@ public class DetectiveNotes : MonoBehaviour
 {
 
     public static bool IsOpen = false;
-    public GameObject Book;
     public GameObject Notepad;
 
     // Update is called once per frame
@@ -26,14 +25,12 @@ public class DetectiveNotes : MonoBehaviour
 
     public void Close()
     {
-        Book.SetActive(false);
         Notepad.SetActive(false);
         IsOpen = false;
     }
 
     public void Open()
     {
-        Book.SetActive(true);
         Notepad.SetActive(true);
         IsOpen = true;
     }
