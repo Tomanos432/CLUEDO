@@ -14,8 +14,8 @@ public class GameBoard : MonoBehaviour
     int[,] playerposition = {{0, 6}, {0, 19}, {9, 0}, {14, 0}, {16, 24}, {23, 17}};
     void Start()
     {
-        Camera.main.orthographicSize = (25/2)+2;
-        Camera.main.transform.position = new Vector3(((float) (25 / 2) - .5f), ((float) (25 / 2) - .5f), -12);
+        Camera.main.orthographicSize = (30/2)+3;
+        Camera.main.transform.position = new Vector3(((float) (23.25 / 2) - .5f), ((float) (25 / 2) - .5f), -12);
         for (int n = 0; n < 188; n++)
         {
             Tile TileClone = Instantiate(TileOriginal, new Vector2(tileposition[n,0], tileposition[n,1]), Quaternion.identity);
