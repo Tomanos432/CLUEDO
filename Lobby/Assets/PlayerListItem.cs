@@ -16,7 +16,7 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
 		text.text = _player.NickName;
 	}
 
-	public override void OnPlayerLeftRoom(Player otherPlayer)
+	public void OnPlayerLeftRoom(Player otherPlayer) //override
 	{
 		if(player == otherPlayer)
 		{

@@ -74,7 +74,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 		
 	}
 
-	public override void OnMasterClientSwitched(Player newMasterClient)
+	public void OnMasterClientSwitched(Player newMasterClient) //override
 	{
 		startGameButton.SetActive(PhotonNetwork.IsMasterClient);
 	}
@@ -124,7 +124,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 		}
 	}
 
-	public override void OnPlayerEnteredRoom(Player newPlayer)
+	public void OnPlayerEnteredRoom(Player newPlayer)  //override
 	{
 		Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
 	}
