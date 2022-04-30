@@ -45,7 +45,11 @@ The following packages were added:
   com.unity.timeline@1.4.8
   com.unity.ugui@1.0.0
 
+<<<<<<< Updated upstream
 === Mon Apr 11 22:57:19 2022
+=======
+=== Wed Apr 13 19:40:50 2022
+>>>>>>> Stashed changes
 
 Packages were changed.
 Update Mode: updateDependencies

@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer myrenderer;
-    [SerializeField] private Color tile, doorway, mustard, scarlet, green, peacock, white, plum;
-    [SerializeField] private GameObject highlight;
     public Player pawn;
+    [SerializeField] public SpriteRenderer myrenderer;
+    [SerializeField] public GameObject highlight;
+    [SerializeField] public Color tile, doorway, move, mustard, scarlet, green, peacock, white, plum;
+    public bool occupied = false;
+    public int Distance;
+    public delegate IEnumerator Action (Vector2 pos); 
+    public event Action OnClick;
 
     private void Start() {
         switch ((transform.position.x, transform.position.y))
@@ -49,9 +53,6 @@ public class Tile : MonoBehaviour
     }
     void OnMouseDown()
     {
-        pawn.MovePlayerToTile(transform.position);
+        StartCoroutine(OnClick(transform.position));
     }
 }
-
-//var x = (float)System.Math.Round(Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
-//var y = (float)System.Math.Round(Camera.main.ScreenToWorldPoint(Input.mousePosition).y);

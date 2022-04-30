@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer myrenderer;
@@ -17,10 +17,5 @@ public class Player : MonoBehaviour
             case (16, 24): myrenderer.color =  scarlet; break;
             case (23, 17): myrenderer.color =  mustard; break;
         }
-    }
-    public void MovePlayerToTile(Vector2 pos) 
-    {
-        Debug.Log("current pos" + transform.position + "intended pos " + pos);
-        transform.position = pos;
     }
 }
