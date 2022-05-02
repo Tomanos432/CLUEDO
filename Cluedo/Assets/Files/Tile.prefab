@@ -97,17 +97,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f862f029458984d9622d7385f1a750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawn: {fileID: -2159548795456908789, guid: 5ca51642ccbc3984e8c6bfe7ee4283e5, type: 3}
   myrenderer: {fileID: 4963280761258733215}
-  tile: {r: 0.9176471, g: 0.8117648, b: 0.29803923, a: 1}
-  doorway: {r: 1, g: 1, b: 1, a: 1}
+  highlight: {fileID: 7092717357562383758}
+  tile: {r: 1, g: 1, b: 1, a: 1}
+  doorway: {r: 0, g: 0, b: 0, a: 1}
+  move: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   mustard: {r: 1, g: 1, b: 1, a: 1}
   scarlet: {r: 1, g: 1, b: 1, a: 1}
   green: {r: 1, g: 1, b: 1, a: 1}
   peacock: {r: 1, g: 1, b: 1, a: 1}
   white: {r: 1, g: 1, b: 1, a: 1}
   plum: {r: 1, g: 1, b: 1, a: 1}
-  highlight: {fileID: 7092717357562383758}
-  pawn: {fileID: -2159548795456908789, guid: 5ca51642ccbc3984e8c6bfe7ee4283e5, type: 3}
+  occupied: 0
+  Distance: 0
 --- !u!61 &2985343399397660737
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,7 +209,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
