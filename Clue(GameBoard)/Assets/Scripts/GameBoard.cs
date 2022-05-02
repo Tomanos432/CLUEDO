@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 public class GameBoard : MonoBehaviour
 {
-    public GameObject TileContainer, PlayerContainer, RoomContainer;
+    public GameObject TileContainer, PlayerContainer, RoomContainer, SuggestButton;
     public Player player;
     public Tile tile;
     [SerializeField] private int Playercount;
@@ -19,7 +19,7 @@ public class GameBoard : MonoBehaviour
     System.Random rnd = new System.Random();
     void Start()
     {
-        Camera.main.orthographicSize = (25/2)+2;
+        Camera.main.orthographicSize = (24/2)+5;
         Camera.main.transform.position = new Vector3(((float) (25 / 2) - .5f), ((float) (25 / 2) - .5f), -12);
         for (int n = 0; n < 188; n++)
         {
@@ -50,7 +50,7 @@ public class GameBoard : MonoBehaviour
         {
             enter = true;
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.P))
         {
             passturn = true;
         }
@@ -129,10 +129,12 @@ public class GameBoard : MonoBehaviour
         {
             if (players[playerturn].transform.parent == PlayerContainer.transform) 
             {
+                SuggestButton.SetActive(false);
                 tiles[(int)players[playerturn].transform.position.x+1, (int)players[playerturn].transform.position.y+1].occupied = false;
             }
             else
             {
+                SuggestButton.SetActive(true);
                 players[playerturn].transform.parent = PlayerContainer.transform;
                 startinroom = true;
             }
