@@ -7,20 +7,6 @@ public class SuggestionPrompt : MonoBehaviour
     public static bool IsOpen = false;
     public GameObject suggestionUI;
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (IsOpen)
-            {
-                Close();
-            }
-            else
-            {
-                Open();
-            }
-        }
-    }
     public void Close()
     {
         suggestionUI.SetActive(false);

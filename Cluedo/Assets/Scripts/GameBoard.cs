@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 public class GameBoard : MonoBehaviour
 {
-    public GameObject TileContainer, PlayerContainer, RoomContainer;
+    public GameObject TileContainer, PlayerContainer, RoomContainer, SuggestMenu;
     public Player player;
     public Tile tile;
     [SerializeField] private int Playercount;
@@ -129,10 +129,12 @@ public class GameBoard : MonoBehaviour
         {
             if (players[playerturn].transform.parent == PlayerContainer.transform) 
             {
+                SuggestMenu.SetActive(false);
                 tiles[(int)players[playerturn].transform.position.x+1, (int)players[playerturn].transform.position.y+1].occupied = false;
             }
             else
             {
+                SuggestMenu.SetActive(true);
                 players[playerturn].transform.parent = PlayerContainer.transform;
                 startinroom = true;
             }

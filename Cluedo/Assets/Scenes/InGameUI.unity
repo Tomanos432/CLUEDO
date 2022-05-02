@@ -13634,6 +13634,7 @@ MonoBehaviour:
   TileContainer: {fileID: 1663863909}
   PlayerContainer: {fileID: 1301211877}
   RoomContainer: {fileID: 981108443}
+  SuggestMenu: {fileID: 2035162753}
   player: {fileID: -2159548795456908789, guid: 5ca51642ccbc3984e8c6bfe7ee4283e5, type: 3}
   tile: {fileID: 5895931254319450965, guid: e1a6177efd340b244bc9887e3e092799, type: 3}
   Playercount: 2
@@ -28632,7 +28633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2035162754
 RectTransform:
   m_ObjectHideFlags: 0
