@@ -215,11 +215,14 @@ public class GameBoard : MonoBehaviour
             yield return new WaitUntil(() => (passturn));
         }
 
-        if (room != 1)
+        if (room >= 0)
         {
             if (room == 0)
             {
                 RoomName.text = "Study";
+            } else if (room == 1)
+            {
+                RoomName.text = "Hall";
             } else if (room == 2)
             {
                 RoomName.text = "Lounge";
