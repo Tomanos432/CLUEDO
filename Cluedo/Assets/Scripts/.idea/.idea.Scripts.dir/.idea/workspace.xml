@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82ca5d60-a8bb-47d2-b023-cebb07300e0d" name="Changes" comment="" />
+    <list default="true" id="554e5afb-164d-48e4-878c-d037c9c8dcf0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/Desktop/School Stuff/CS370/GameBoard.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Tile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../DetectiveNotes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Tile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GameBoard.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../SuggestionPrompt.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="28cNnVnBbr3qlaiKRskfl1RTPzg" />
+  <component name="ProjectId" id="27lPmCABXUtquzNbbdNEC4KdwAo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,12 +32,14 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="82ca5d60-a8bb-47d2-b023-cebb07300e0d" name="Changes" comment="" />
-      <created>1651512084315</created>
+      <changelist id="554e5afb-164d-48e4-878c-d037c9c8dcf0" name="Changes" comment="" />
+      <created>1649891858836</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1651512084315</updated>
-      <workItem from="1651512087579" duration="895000" />
+      <updated>1649891858836</updated>
+      <workItem from="1649891862311" duration="478000" />
+      <workItem from="1651456435450" duration="1641000" />
+      <workItem from="1651460299157" duration="1977000" />
     </task>
     <servers />
   </component>
@@ -42,7 +47,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

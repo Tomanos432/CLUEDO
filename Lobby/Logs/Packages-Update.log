@@ -45,11 +45,7 @@ The following packages were added:
   com.unity.timeline@1.4.8
   com.unity.ugui@1.0.0
 
-<<<<<<< Updated upstream:Lobby/Logs/Packages-Update.log
 === Tue Apr 26 16:53:35 2022
-=======
-=== Mon May  2 09:52:02 2022
->>>>>>> Stashed changes:Clue(GameBoard)/Logs/Packages-Update.log
 
 Packages were changed.
 Update Mode: updateDependencies
