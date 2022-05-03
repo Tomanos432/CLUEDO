@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    private void Start()
+    public InputField usernameIn;
+    public TextMeshProUGUI buttonText;
+    
+    public void OnClickConnect()
     {
+        PhotonNetwork.NickName = usernameIn.text;
+        buttonText.text = "Loading...";
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby()
-    {
+        StreamChatBehaviour.instance.GetOrCreateClient(usernameIn.text);
+        //PhotonNetwork.JoinLobby();
         SceneManager.LoadScene("Lobby");
     }
+
+    //public override void OnJoinedLobby()
+    //{
+      //SceneManager.LoadScene("Lobby");  
+    //}
     
 }
