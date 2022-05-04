@@ -7,21 +7,7 @@ public class PlayerHand : MonoBehaviour
 	public static bool IsOpen = false;
 
 	public GameObject playerHandUI;
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (IsOpen)
-            {
-                Close();
-            }
-            else
-            {
-                Open();
-            }
-        }
-    }
-   
+    
     public void Close()
     {
         playerHandUI.SetActive(false);

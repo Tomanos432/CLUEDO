@@ -6,20 +6,6 @@ public class HelpPrompt : MonoBehaviour
 {
     public static bool isOpen = false;
     public GameObject helpMenuUI;
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if (isOpen)
-            {
-                Close();
-            }
-            else
-            {
-                Open();
-            }
-        }
-    }
 
     public void Close()
     {
@@ -31,5 +17,17 @@ public class HelpPrompt : MonoBehaviour
     {
         helpMenuUI.SetActive(true);
         isOpen = true;
+    }
+    
+    public void Button()
+    {
+        if (isOpen)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
     }
 }

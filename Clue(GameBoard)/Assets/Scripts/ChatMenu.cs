@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectiveNotes : MonoBehaviour
+public class ChatMenu : MonoBehaviour
 {
-
     public static bool IsOpen = false;
-    public GameObject Notepad;
+    public GameObject chatUI;
 
-    public void Close()
+	public void Close()
     {
-        Notepad.SetActive(false);
+        chatUI.SetActive(false);
         IsOpen = false;
     }
 
     public void Open()
     {
-        Notepad.SetActive(true);
+        chatUI.SetActive(true);
         IsOpen = true;
     }
-    
-    public void Button()
+
+	 public void Button()
     {
         if (IsOpen)
         {

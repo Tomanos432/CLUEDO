@@ -12,7 +12,7 @@ public class GameBoard : MonoBehaviour
     public Player player;
     public Tile tile;
 
-    public TextMeshProUGUI RoomName;
+    public TextMeshProUGUI RoomName, rollNum;
 
     private PhotonView view;
     [SerializeField] private int Playercount;
@@ -61,7 +61,7 @@ public class GameBoard : MonoBehaviour
         {
             enter = true;
         }
-        if (Input.GetKeyUp(KeyCode.P))
+        if (Input.GetKeyUp(KeyCode.Equals))
         {
             passturn = true;
         }
@@ -254,6 +254,7 @@ public class GameBoard : MonoBehaviour
         passturn = false;
         startinroom = false;
         roll = rnd.Next(2,13);
+		rollNum.text = "Current roll: " + roll;
         InitiateTurn(playerturn);
     }
     void secretpassage()
