@@ -67,7 +67,7 @@ public class GameBoard : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            secretpassage();
+            Tunnel();
         }
     }
     void InitiateTurn(int playerturn)
@@ -131,148 +131,78 @@ public class GameBoard : MonoBehaviour
         }
         
     }
-    IEnumerator MovePlayerToTile(Vector2 pos) 
+    IEnumerator MovePlayerToTile(Vector2 pos)
     {
-        bool startinroom = false;
+        passturn = false;
         int room = 0;
         Tile tile = tiles[(int)pos.x+1, (int)pos.y+1];
-        if ((tile.myrenderer.color == doorhighlight || tile.myrenderer.color == tilehighlight) && !passturn)
+        if (tile.myrenderer.color == tilehighlight || tile.myrenderer.color == doorhighlight)
         {
-            if (players[playerturn].transform.parent == PlayerContainer.transform) 
+            if (tile.myrenderer.color == tilehighlight)
             {
                 SuggestButton.SetActive(false);
                 tiles[(int)players[playerturn].transform.position.x+1, (int)players[playerturn].transform.position.y+1].occupied = false;
+                players[playerturn].transform.position = new Vector2(pos.x, pos.y);
+                tile.occupied = true;
             }
-            else
+            else if(players[playerturn].transform.parent == PlayerContainer.transform)
             {
-                SuggestButton.SetActive(true);
-                players[playerturn].transform.parent = PlayerContainer.transform;
-                startinroom = true;
-            }
-            tile.occupied = true;
-            players[playerturn].transform.position = new Vector2(pos.x, pos.y);
-
-            if (tile.myrenderer.color == doorhighlight)
-            {
-                switch ((tile.transform.position.x, tile.transform.position.y))
+                tiles[(int)players[playerturn].transform.position.x+1, (int)players[playerturn].transform.position.y+1].occupied = false;
+                players[playerturn].transform.position = new Vector2(pos.x, pos.y);
+                yield return new WaitUntil(() => (enter || passturn));
+                if (enter)
                 {
-                    //study 
-                    case (6, 20): room = 0; break;
-                    //hall
-                    case (8, 20):
-                    case (11, 17):
-                    case (12, 17): room = 1;break;
-                    //lounge
-                    case (17, 18): room = 2;break;
-                    //library
-                    case (7, 16):
-                    case (3, 13): room = 3;break;
-                    //billiard room
-                    case (1, 13):
-                    case (6, 9): room = 4;break;
-                    //dining room
-                    case (17, 16):
-                    case (15, 12): room = 5;break;
-                    //conservatory
-                    case (5, 5): room = 6;break;
-                    //ball room
-                    case (7, 5):
-                    case (9, 8):
-                    case (14, 8):
-                    case (16, 5): room = 7;break;
-                    //kitchen
-                    case (19, 7): room = 8;break;
-                }
-                if (startinroom)
-                {
-                    passturn = true;
-                    playerturn--;
+                    enter = false;
+                    switch ((tile.transform.position.x, tile.transform.position.y))
+                    {
+                        //study 
+                        case (6, 20): room = 0; break;
+                        //hall
+                        case (8, 20):
+                        case (11, 17):
+                        case (12, 17): room = 1;break;
+                        //lounge
+                        case (17, 18): room = 2;break;
+                        //library
+                        case (7, 16):
+                        case (3, 13): room = 3;break;
+                        //billiard room
+                        case (1, 13):
+                        case (6, 9): room = 4;break;
+                        //dining room
+                        case (17, 16):
+                        case (15, 12): room = 5;break;
+                        //conservatory
+                        case (5, 5): room = 6;break;
+                        //ball room
+                        case (7, 5):
+                        case (9, 8):
+                        case (14, 8):
+                        case (16, 5): room = 7;break;
+                        //kitchen
+                        case (19, 7): room = 8;break;
+                    }
+                    players[playerturn].transform.parent = RoomContainer.transform.GetChild(room).transform;
+                    for (int i = 0; i < RoomContainer.transform.GetChild(room).childCount; i++)
+                    {
+                        float angle = i * Mathf.PI*2f / RoomContainer.transform.GetChild(room).childCount;
+                        RoomContainer.transform.GetChild(room).GetChild(i).transform.position = new Vector2(Mathf.Cos(angle)+RoomContainer.transform.GetChild(room).transform.position.x, Mathf.Sin(angle)+RoomContainer.transform.GetChild(room).transform.position.y);   
+                    }
                 }
                 else
                 {
-                    yield return new WaitUntil(() => (enter || passturn));
-                    if (enter)
-                    {
-                        tiles[(int)players[playerturn].transform.position.x+1, (int)players[playerturn].transform.position.y+1].occupied = false;
-                        players[playerturn].transform.parent = RoomContainer.transform.GetChild(room).transform;
-                        for (int i = 0; i < RoomContainer.transform.GetChild(room).childCount; i++)
-                        {
-                            float angle = i * Mathf.PI*2f / RoomContainer.transform.GetChild(room).childCount;
-                            RoomContainer.transform.GetChild(room).GetChild(i).transform.position = new Vector2(Mathf.Cos(angle)+RoomContainer.transform.GetChild(room).transform.position.x, Mathf.Sin(angle)+RoomContainer.transform.GetChild(room).transform.position.y);   
-                        }
-                        passturn = true;
-                    }
+                    tile.occupied = true;
                 }
-            }
-            foreach (var item in tiles)
-            {
-                if (item != null)
-                {
-                    item.myrenderer.color = (item.myrenderer.color == doorhighlight || item.myrenderer.color == item.doorway) ? item.doorway : item.tile;
-                    item.Distance = 0;
-                }
-            }
-            yield return new WaitUntil(() => (passturn));
-        }
-
-        if (room >= 0)
-        {
-            if (room == 0)
-            {
-                RoomName.text = "Study";
-            } else if (room == 1)
-            {
-                RoomName.text = "Hall";
-            } else if (room == 2)
-            {
-                RoomName.text = "Lounge";
-            } else if (room == 3)
-            {
-                RoomName.text = "Library";
-            } else if (room == 4)
-            {
-                RoomName.text = "Billiard Room";
-            } else if (room == 5)
-            {
-                RoomName.text = "Dining Room";
-            } else if (room == 6)
-            {
-                RoomName.text = "Conservatory";
-            } else if (room == 7)
-            {
-                RoomName.text = "Ball Room";
             }
             else
             {
-                RoomName.text = "Kitchen";
-            }
-        }
-        
-        if(passturn) playerturn++;
-        if (playerturn == Playercount) playerturn = 0;
-        enter = false;
-        passturn = false;
-        startinroom = false;
-        roll = rnd.Next(2,13);
-		rollNum.text = "Current roll: " + roll;
-        InitiateTurn(playerturn);
-    }
-    void secretpassage()
-    {
-        if (passturn == false && players[playerturn].transform.parent != PlayerContainer.transform)
-        {
-            switch (players[playerturn].transform.parent.transform.GetSiblingIndex())
-            {
-                case 0: players[playerturn].transform.parent = RoomContainer.transform.GetChild(8).transform; break;
-                case 2: players[playerturn].transform.parent = RoomContainer.transform.GetChild(6).transform; break;
-                case 6: players[playerturn].transform.parent = RoomContainer.transform.GetChild(2).transform; break;
-                case 8: players[playerturn].transform.parent = RoomContainer.transform.GetChild(0).transform; break;
-                default: goto skip;
-            }
-            for (int i = 0; i < RoomContainer.transform.GetChild(players[playerturn].transform.parent.transform.GetSiblingIndex()).childCount; i++)
-            {
-                float angle = i * Mathf.PI*2f / RoomContainer.transform.GetChild(players[playerturn].transform.parent.transform.GetSiblingIndex()).childCount;
-                RoomContainer.transform.GetChild(players[playerturn].transform.parent.transform.GetSiblingIndex()).GetChild(i).transform.position = new Vector2(Mathf.Cos(angle)+RoomContainer.transform.GetChild(players[playerturn].transform.parent.transform.GetSiblingIndex()).transform.position.x, Mathf.Sin(angle)+RoomContainer.transform.GetChild(players[playerturn].transform.parent.transform.GetSiblingIndex()).transform.position.y);   
+                RoomName.text = players[playerturn].transform.parent.name;
+                SuggestButton.SetActive(true);
+                players[playerturn].transform.position = new Vector2(pos.x, pos.y);
+                players[playerturn].transform.parent = PlayerContainer.transform;
+                tile.occupied = true;
+                passturn = true;
+                playerturn--;
             }
             foreach (var item in tiles)
             {
@@ -282,9 +212,43 @@ public class GameBoard : MonoBehaviour
                     item.Distance = 0;
                 }
             }
-            passturn = true;
-            StartCoroutine(MovePlayerToTile(new Vector2(5, 7)));
+
+            playerturn++;
+            if (playerturn == Playercount) playerturn = 0;
+            yield return new WaitUntil(() => (passturn));
+            roll = rnd.Next(2,13);
+            rollNum.text = "Current roll: " + roll;
+            InitiateTurn(playerturn);
         }
-        skip:;
+    }
+    void Tunnel()
+    {
+        Debug.Log("in");
+        RoomName.text = players[playerturn].transform.parent.name;
+        Debug.Log(passturn);
+        int room = players[playerturn].transform.parent.transform.GetSiblingIndex();
+        Debug.Log(room);
+        switch (room)
+        {
+            case 0: room = 8; break;
+            case 2: room = 6; break;
+            case 6: room = 2; break;
+            case 8: room = 0; break;
+            default: goto notunnel;
+        }
+        if (passturn == true)
+        {
+            Debug.Log("in2");
+            players[playerturn].transform.parent = RoomContainer.transform.GetChild(room).transform;
+            for (int i = 0; i < RoomContainer.transform.GetChild(room).childCount; i++)
+            {
+                float angle = i * Mathf.PI*2f / RoomContainer.transform.GetChild(room).childCount;
+                RoomContainer.transform.GetChild(room).GetChild(i).transform.position = new Vector2(Mathf.Cos(angle)+RoomContainer.transform.GetChild(room).transform.position.x, Mathf.Sin(angle)+RoomContainer.transform.GetChild(room).transform.position.y);   
+            }
+        }
+        playerturn++;
+        if (playerturn == Playercount) playerturn = 0;
+        InitiateTurn(playerturn);
+        notunnel:;
     }
 }
